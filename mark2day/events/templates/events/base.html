@@ -8,9 +8,11 @@
   </head>
   <body>
     {% include 'events/navbar.html' %}
+    <div class="container">
      {% block content %}
 
     {% endblock %}
+  </div>
     <br/> <br/>
     <footer>
         Copyright (c) {{ current_year }}
