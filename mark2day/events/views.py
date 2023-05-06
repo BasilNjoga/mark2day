@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import calendar
 from calendar import HTMLCalendar
 from datetime import datetime
@@ -6,6 +6,7 @@ from .models import Event
 
 # Create views are here
 
+# Takes you to the list of all events
 def all_events(request):
     event_list = Event.objects.all()
 
@@ -14,7 +15,12 @@ def all_events(request):
         'event_list': event_list
      })
 
+# View to the admin page
+def my_admin(request):
 
+    return redirect("/admin")
+
+# View to the main page
 def home(request, year=datetime.now().year, month=datetime.now().strftime('%B')):
     name = "Basil"
     month = month.capitalize()
