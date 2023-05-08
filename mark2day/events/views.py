@@ -18,7 +18,7 @@ def all_events(request):
 # View to the admin page
 def my_admin(request):
 
-    return redirect("/admin")
+    return redirect("/admin/")
 
 # View to the main page
 def home(request, year=datetime.now().year, month=datetime.now().strftime('%B')):
