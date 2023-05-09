@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 import calendar
 from calendar import HTMLCalendar
 from datetime import datetime
+from django.http import HttpResponseRedirect
 from .models import Event
+from .forms import VenueForm
 
 # Create views are here
 
@@ -14,6 +16,22 @@ def all_events(request):
      {
         'event_list': event_list
      })
+
+def add_venue(request):
+    submitted = False
+    if request.method == "POST":
+        form = VenueForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/add_venue?submitted=True')
+    else:
+        form = VenueForm
+        if 'submitted' in request.GET:
+            submitted = False
+    form = VenueForm
+    return render(request, 'events/add_venue.html', {'form': form, 'submitted': submitted})
+
+
 
 # View to the admin page
 def my_admin(request):
